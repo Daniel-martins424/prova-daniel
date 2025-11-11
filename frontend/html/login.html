@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Entrar — EstoqueApp</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">EstoqueApp</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cadastro.html">Cadastrar</a>
+      <a href="login.html" class="active">Entrar</a>
+    </nav>
+  </header>
+
+  <main class="container narrow">
+    <section class="card">
+      <h1>Login</h1>
+      <form id="form-login" class="form">
+        <label>Usuário (e-mail)
+          <input id="login-email" type="email" placeholder="email@exemplo.com" required />
+        </label>
+
+        <label>Senha
+          <input id="login-password" type="password" placeholder="senha" required />
+        </label>
+
+        <div class="row-right">
+          <button class="btn" type="submit">Entrar</button>
+          <a class="btn-link" href="cadastro.html">Criar conta</a>
+        </div>
+
+        <div id="login-msg" class="small muted"></div>
+      </form>
+    </section>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    initApp();
+    document.getElementById('form-login').addEventListener('submit', e=>{
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const pass = document.getElementById('login-password').value;
+      const ok = login(email, pass);
+      const msg = document.getElementById('login-msg');
+      if(ok) {
+        msg.textContent = 'Login realizado com sucesso!';
+        setTimeout(()=> location.href = 'index.html', 700);
+      } else {
+        msg.textContent = 'Usuário ou senha inválidos.';
+      }
+    });
+  </script>
+</body>
+</html>

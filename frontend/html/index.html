@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Controle de Estoque — Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">EstoqueApp</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="estoque.html">Estoque</a>
+      <a href="alertas.html">Alertas</a>
+      <a href="cadastro.html">Cadastrar</a>
+      <a id="nav-login" href="login.html">Entrar</a>
+      <button id="btn-logout" class="btn-ghost" style="display:none">Sair</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Olá — Bem vindo ao EstoqueApp</h1>
+      <p class="lead">Uma interface simples para cadastrar produtos, registrar entradas/saídas e ver alertas de estoque baixo.</p>
+
+      <div class="row">
+        <div class="tile">
+          <h3 id="total-produtos">0</h3>
+          <p>Produtos cadastrados</p>
+        </div>
+        <div class="tile">
+          <h3 id="produtos-baixo">0</h3>
+          <p>Produtos abaixo do mínimo</p>
+        </div>
+        <div class="tile">
+          <h3 id="ultimo-usuario">-</h3>
+          <p>Usuário logado</p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <a class="btn" href="cadastro.html">+ Cadastrar produto</a>
+        <a class="btn-outline" href="estoque.html">Registrar entrada/saída</a>
+      </div>
+    </section>
+
+    <section class="card" id="recentes-card">
+      <h2>Movimentações recentes</h2>
+      <div id="recentes-list" class="list small">Nenhuma movimentação ainda.</div>
+    </section>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>initApp()</script>
+</body>
+</html>

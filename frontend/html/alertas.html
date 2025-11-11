@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alertas — EstoqueApp</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">EstoqueApp</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="estoque.html">Estoque</a>
+      <a href="alertas.html" class="active">Alertas</a>
+      <a href="cadastro.html">Cadastrar</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h1>Alertas de Estoque</h1>
+      <div class="small">Produtos com estoque igual ou inferior ao mínimo.</div>
+
+      <div id="alertas-container" style="margin-top:12px"></div>
+      <div id="alerta-empty" class="small muted">Carregando...</div>
+    </section>
+  </main>
+
+  <script src="../js/script.js"></script>
+  <script>
+    initApp();
+    renderAlerts();
+  </script>
+</body>
+</html>
