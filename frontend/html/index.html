@@ -1,57 +1,37 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Controle de Estoque — Dashboard</title>
-  <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">EstoqueApp</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="estoque.html">Estoque</a>
-      <a href="alertas.html">Alertas</a>
-      <a href="cadastro.html">Cadastrar</a>
-      <a id="nav-login" href="login.html">Entrar</a>
-      <button id="btn-logout" class="btn-ghost" style="display:none">Sair</button>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="card">
-      <h1>Olá — Bem vindo ao EstoqueApp</h1>
-      <p class="lead">Uma interface simples para cadastrar produtos, registrar entradas/saídas e ver alertas de estoque baixo.</p>
-
-      <div class="row">
-        <div class="tile">
-          <h3 id="total-produtos">0</h3>
-          <p>Produtos cadastrados</p>
+    <header class="topbar">
+        <div class="brand">Sistema de Estoque</div>
+        <nav>
+            <a href="Alertas">Alertas</a>
+            <a href="Cadastro">Cadastro</a>
+            <a href="Estoque">Estoque</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Bem-vindo ao Sistema de Estoque</h1>
+        <p class="lead">Gerencie seus produtos com eficiência e praticidade.</p>
+        <div class="row">
+            <div class="tile">
+                <h3>Produtos</h3>
+                <p class="small">Gerencie o estoque de produtos.</p>
+            </div>
+            <div class="tile">
+                <h3>Alertas</h3>
+                <p class="small">Fique atento aos alertas de estoque.</p>
+            </div>
+            <div class="tile">
+                <h3>Cadastro</h3>
+                <p class="small">Adicione novos produtos ao sistema.</p>
+            </div>
         </div>
-        <div class="tile">
-          <h3 id="produtos-baixo">0</h3>
-          <p>Produtos abaixo do mínimo</p>
-        </div>
-        <div class="tile">
-          <h3 id="ultimo-usuario">-</h3>
-          <p>Usuário logado</p>
-        </div>
-      </div>
-
-      <div style="margin-top:18px">
-        <a class="btn" href="cadastro.html">+ Cadastrar produto</a>
-        <a class="btn-outline" href="estoque.html">Registrar entrada/saída</a>
-      </div>
-    </section>
-
-    <section class="card" id="recentes-card">
-      <h2>Movimentações recentes</h2>
-      <div id="recentes-list" class="list small">Nenhuma movimentação ainda.</div>
-    </section>
-  </main>
-
-  <script src="../js/script.js"></script>
-  <script>initApp()</script>
+    </main>
 </body>
 </html>

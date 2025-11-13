@@ -1,106 +1,77 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cadastrar Conta / Produto — EstoqueApp</title>
-  <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">EstoqueApp</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="login.html">Entrar</a>
-      <a href="cadastro.html" class="active">Cadastrar</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <div class="grid-2">
-      <section class="card">
-        <h2>Cadastrar conta (simples)</h2>
-        <form id="form-cadastro-user" class="form">
-          <label>Nome
-            <input id="user-name" required />
-          </label>
-          <label>E-mail
-            <input id="user-email" type="email" required />
-          </label>
-          <label>Senha
-            <input id="user-pass" type="password" required />
-          </label>
-
-          <div class="row-right">
-            <button class="btn" type="submit">Criar conta</button>
-          </div>
-
-          <div id="user-msg" class="small muted"></div>
+    <header class="topbar">
+        <div class="brand">Sistema de Estoque</div>
+        <nav>
+            <a href="/">Menu Principal</a>
+            <a href="/Alertas">Alertas</a>
+            <a href="/Estoque">Estoque</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Cadastro de Produto</h1>
+        <form id="cadastro-form" class="card">
+            <div class="form-inline">
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div>
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" required>
+                </div>
+                <div>
+                    <label for="volume">Volume:</label>
+                    <input type="text" id="volume" name="volume" required>
+                </div>
+                <div>
+                    <label for="tipo_embalagem">Embalagem:</label>
+                    <input type="text" id="tipo_embalagem" name="tipo_embalagem" required>
+                </div>
+                <div>
+                    <label for="aplicacao">Aplicação:</label>
+                    <input type="text" id="aplicacao" name="aplicacao" required>
+                </div>
+                <div>
+                    <label for="estoque">Estoque:</label>
+                    <input type="number" id="estoque" name="estoque" required>
+                </div>
+                <div>
+                    <label for="estoque_minimo">Estoque Mínimo:</label>
+                    <input type="number" id="estoque_minimo" name="estoque_minimo" required>
+                </div>
+                <div class="row-right">
+                    <button type="submit" class="btn">Cadastrar</button>
+                </div>
+            </div>
         </form>
-      </section>
+        <script>
+            document.getElementById('cadastro-form').addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const data = Object.fromEntries(formData);
 
-      <section class="card">
-        <h2>Cadastrar produto</h2>
-        <form id="form-cadastro-produto" class="form">
-          <label>Nome
-            <input id="p-nome" required />
-          </label>
-          <label>Marca
-            <input id="p-marca" />
-          </label>
-          <label>Volume (ex: 500)
-            <input id="p-volume" type="number" min="0" />
-          </label>
-          <label>Unidade (ex: ml, L)
-            <input id="p-unidade" />
-          </label>
-          <label>Estoque inicial
-            <input id="p-estoque" type="number" min="0" value="0" />
-          </label>
-          <label>Estoque mínimo
-            <input id="p-minimo" type="number" min="0" value="0" />
-          </label>
+                try {
+                    const response = await fetch(`${window.location.origin}/produtos`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
 
-          <div class="row-right">
-            <button class="btn" type="submit">Cadastrar produto</button>
-          </div>
-
-          <div id="prod-msg" class="small muted"></div>
-        </form>
-      </section>
-    </div>
-  </main>
-
-  <script src="../js/script.js"></script>
-  <script>
-    initApp();
-
-    document.getElementById('form-cadastro-user').addEventListener('submit', e=>{
-      e.preventDefault();
-      const name = document.getElementById('user-name').value.trim();
-      const email = document.getElementById('user-email').value.trim();
-      const pass = document.getElementById('user-pass').value;
-      const ok = registerUser({name, email, pass});
-      const msg = document.getElementById('user-msg');
-      msg.textContent = ok ? 'Conta criada! Faça login.' : 'E-mail já cadastrado.';
-      if(ok) { setTimeout(()=> location.href='login.html', 900); }
-    });
-
-    document.getElementById('form-cadastro-produto').addEventListener('submit', e=>{
-      e.preventDefault();
-      const produto = {
-        nome: document.getElementById('p-nome').value.trim(),
-        marca: document.getElementById('p-marca').value.trim(),
-        volume: document.getElementById('p-volume').value,
-        unidade: document.getElementById('p-unidade').value.trim(),
-        estoque: Number(document.getElementById('p-estoque').value) || 0,
-        minimo: Number(document.getElementById('p-minimo').value) || 0,
-        id: 'p_' + Date.now()
-      };
-      addProduct(produto);
-      document.getElementById('prod-msg').textContent = 'Produto cadastrado com sucesso!';
-      setTimeout(()=> location.reload(), 700);
-    });
-  </script>
+                    const result = await response.json();
+                    alert(result.msg);
+                } catch (error) {
+                    alert('Erro ao cadastrar produto.');
+                }
+            });
+        </script>
+    </main>
 </body>
 </html>

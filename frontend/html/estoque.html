@@ -1,75 +1,41 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Estoque — EstoqueApp</title>
-  <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">EstoqueApp</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="estoque.html" class="active">Estoque</a>
-      <a href="alertas.html">Alertas</a>
-      <a href="cadastro.html">Cadastrar</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="card">
-      <h1>Gerenciar Estoque</h1>
-      <div class="small">Selecione um produto, depois registre entrada (positiva) ou saída (negativa).</div>
-
-      <div class="form-inline" style="margin-top:12px">
-        <select id="sel-produtos"></select>
-        <input id="quantidade" type="number" min="1" value="1" />
-        <select id="tipo-mov">
-          <option value="entrada">Entrada</option>
-          <option value="saida">Saída</option>
-        </select>
-        <input id="responsavel" placeholder="Responsável" />
-        <button id="btn-mov" class="btn">Registrar</button>
-      </div>
-
-      <div id="mov-msg" class="small muted" style="margin-top:10px"></div>
-    </section>
-
-    <section class="card">
-      <h2>Produtos</h2>
-      <div id="produtos-list" class="table-wrap"></div>
-    </section>
-  </main>
-
-  <script src="../js/script.js"></script>
-  <script>
-    initApp();
-    populateProdutoSelect();
-
-    document.getElementById('btn-mov').addEventListener('click', ()=>{
-      const prodId = document.getElementById('sel-produtos').value;
-      const qtd = Number(document.getElementById('quantidade').value) || 0;
-      const tipo = document.getElementById('tipo-mov').value;
-      const resp = document.getElementById('responsavel').value.trim() || '—';
-      const msg = document.getElementById('mov-msg');
-
-      if(!prodId){ msg.textContent = 'Selecione um produto.'; return; }
-      if(qtd <= 0){ msg.textContent = 'Informe quantidade válida.'; return; }
-
-      if(tipo === 'entrada'){
-        registerMovement(prodId, qtd, resp, 'Entrada');
-        msg.textContent = 'Entrada registrada.';
-      } else {
-        const success = registerMovement(prodId, -qtd, resp, 'Saída');
-        msg.textContent = success ? 'Saída registrada.' : 'Estoque insuficiente.';
-      }
-
-      setTimeout(()=> { renderProductsTable(); renderRecentes(); populateProdutoSelect(); }, 400);
-    });
-
-    renderProductsTable();
-    renderRecentes();
-  </script>
+    <header class="topbar">
+        <div class="brand">Sistema de Estoque</div>
+        <nav>
+            <a href="/">Menu Principal</a>
+            <a href="/Alertas">Alertas</a>
+            <a href="/Cadastro">Cadastro</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Estoque</h1>
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Marca</th>
+                        <th>Volume</th>
+                        <th>Tipo de Embalagem</th>
+                        <th>Aplicação</th>
+                        <th>Estoque</th>
+                        <th>Estoque Mínimo</th>
+                    </tr>
+                </thead>
+                <tbody id="produtos-tbody">
+                    <!-- Produtos serão carregados dinamicamente -->
+                </tbody>
+            </table>
+        </div>
+        <script src="script.js"></script>
+    </main>
 </body>
 </html>
